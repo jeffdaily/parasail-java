@@ -26,9 +26,9 @@ ELSE()
 ENDIF()
 
 # compile JNIparasail.java to class file
-ADD_JAR(JNIparasail JNIparasail.java)
-GET_TARGET_PROPERTY(_jarFile JNIparasail JAR_FILE)
-GET_TARGET_PROPERTY(_classDir JNIparasail CLASSDIR)
+ADD_JAR(parasail JNIparasail.java)
+GET_TARGET_PROPERTY(_jarFile parasail JAR_FILE)
+GET_TARGET_PROPERTY(_classDir parasail CLASSDIR)
 
 # generate JNIparasail.h stub
 SET (_stubDir "${CMAKE_CURRENT_BINARY_DIR}")
@@ -38,6 +38,7 @@ ADD_CUSTOM_COMMAND(
         -classpath ${_classDir}
         -d ${_stubDir}
         -jni JNIparasail
+    DEPENDS parasail.jar
     )
 
 # generate parasail JNI module
@@ -47,8 +48,8 @@ INCLUDE_DIRECTORIES(
     ${_classDir}
     ${_stubDir}
     ${PARASAIL_INCLUDE_DIRS})
-ADD_LIBRARY(libJNIparasail MODULE JNIparasail.c JNIparasail.h)
-TARGET_LINK_LIBRARIES(libJNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
+ADD_LIBRARY(JNIparasail MODULE JNIparasail.c JNIparasail.h)
+TARGET_LINK_LIBRARIES(JNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
 ## The library name expected by the JNI relative to the system:
 ##   MacOS  : libLIBRARY.jnilib
 ##   Windows: LIBRARY.dll
@@ -57,16 +58,16 @@ TARGET_LINK_LIBRARIES(libJNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
 ## where LIBRARY is used in java to load the library:
 ##      System.loadLibrary("LIBRARY");
 IF(APPLE)
-  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "lib" SUFFIX ".jnilib")
+  SET_TARGET_PROPERTIES(JNIparasail PROPERTIES PREFIX "lib" SUFFIX ".jnilib")
 ELSEIF(WIN32)
-  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "" SUFFIX ".dll")
+  SET_TARGET_PROPERTIES(JNIparasail PROPERTIES PREFIX "" SUFFIX ".dll")
 ELSEIF(UNIX)
-  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "lib" SUFFIX ".so")
+  SET_TARGET_PROPERTIES(JNIparasail PROPERTIES PREFIX "lib" SUFFIX ".so")
 ENDIF(APPLE)
 
 ENABLE_TESTING()
 
-# add test to run libJNIparasail
+# add test to run JNIparasail
 ADD_TEST(NAME TestJNIparasail
     COMMAND ${Java_JAVA_EXECUTABLE}
     -Djava.library.path=${CMAKE_CURRENT_BINARY_DIR}

@@ -2,7 +2,7 @@ import java.lang.String;
 
 public class JNIparasail {
     static {
-        System.loadLibrary("parasail");
+        System.loadLibrary("JNIparasail");
     }
 
     public static native long sw(byte[] s1, byte[] s2, int open, int extend, long matrix);
