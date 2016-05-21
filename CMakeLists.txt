@@ -8,12 +8,21 @@ FIND_PACKAGE(Java COMPONENTS Development REQUIRED)
 FIND_PACKAGE(JNI REQUIRED)
 INCLUDE(UseJava)
 
-IF (NOT JAVA_FOUND)
-    MESSAGE (SEND_ERROR "Java not found")
-ENDIF()
-
-IF (NOT JNI_FOUND)
-    MESSAGE (SEND_ERROR "Java JNI headers not found")
+# find parasail
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PATH(PARASAIL_INCLUDE_DIR parasail.h)
+FIND_LIBRARY(PARASAIL_LIBRARY parasail)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(PARASAIL
+    DEFAULT_MSG
+    PARASAIL_INCLUDE_DIR
+    PARASAIL_LIBRARY
+)
+MARK_AS_ADVANCED(PARASAIL_LIBRARY PARASAIL_INCLUDE_DIR)
+IF(PARASAIL_FOUND)
+    SET(PARASAIL_LIBRARIES    ${PARASAIL_LIBRARY})
+    SET(PARASAIL_INCLUDE_DIRS ${PARASAIL_INCLUDE_DIR})
+ELSE()
+    MESSAGE (SEND_ERROR "parasail library not found")
 ENDIF()
 
 # compile JNIparasail.java to class file
@@ -31,9 +40,34 @@ ADD_CUSTOM_COMMAND(
         -jni JNIparasail
     )
 
-# generate libparasail.jnilib
-INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH} ${_classDir} ${_stubDir})
-ADD_LIBRARY(parasail MODULE parasail.c JNIparasail.h)
-SET_TARGET_PROPERTIES(parasail PROPERTIES SUFFIX ".jnilib")
-TARGET_LINK_LIBRARIES(parasail ${JNI_LIBRARIES})
+# generate parasail JNI module
+INCLUDE_DIRECTORIES(
+    ${JAVA_INCLUDE_PATH}
+    ${JAVA_INCLUDE_PATH2}
+    ${_classDir}
+    ${_stubDir}
+    ${PARASAIL_INCLUDE_DIRS})
+ADD_LIBRARY(libJNIparasail MODULE JNIparasail.c JNIparasail.h)
+TARGET_LINK_LIBRARIES(libJNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
+## The library name expected by the JNI relative to the system:
+##   MacOS  : libLIBRARY.jnilib
+##   Windows: LIBRARY.dll
+##   Linux  : libLIBRARY.so
+##
+## where LIBRARY is used in java to load the library:
+##      System.loadLibrary("LIBRARY");
+IF(APPLE)
+  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "lib" SUFFIX ".jnilib")
+ELSEIF(WIN32)
+  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "" SUFFIX ".dll")
+ELSEIF(UNIX)
+  SET_TARGET_PROPERTIES(libJNIparasail PROPERTIES PREFIX "lib" SUFFIX ".so")
+ENDIF(APPLE)
 
+ENABLE_TESTING()
+
+# add test to run libJNIparasail
+ADD_TEST(NAME TestJNIparasail
+    COMMAND ${Java_JAVA_EXECUTABLE}
+    -Djava.library.path=${CMAKE_CURRENT_BINARY_DIR}
+    -cp ${_jarFile} JNIparasail)
