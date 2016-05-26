@@ -25,30 +25,55 @@ ELSE()
     MESSAGE (SEND_ERROR "parasail library not found")
 ENDIF()
 
-# compile JNIparasail.java to class file
-ADD_JAR(parasail JNIparasail.java)
-GET_TARGET_PROPERTY(_jarFile parasail JAR_FILE)
-GET_TARGET_PROPERTY(_classDir parasail CLASSDIR)
+SET (_binDir "${CMAKE_CURRENT_BINARY_DIR}")
+SET (_pkgDir "${CMAKE_CURRENT_BINARY_DIR}/parasail")
+SET (_srcDir "${CMAKE_CURRENT_SOURCE_DIR}/src/parasail")
+
+ADD_CUSTOM_COMMAND(
+    OUTPUT ${_pkgDir}/JNIparasail.class
+    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/JNIparasail.java
+    MAIN_DEPENDENCY ${_srcDir}/JNIparasail.java
+)
+
+ADD_CUSTOM_COMMAND(
+    OUTPUT ${_pkgDir}/Matrix.class
+    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/Matrix.java
+    MAIN_DEPENDENCY ${_srcDir}/Matrix.java
+    DEPENDS ${_pkgDir}/JNIparasail.class
+)
+
+ADD_CUSTOM_COMMAND(
+    OUTPUT ${_pkgDir}/Result.class
+    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/Result.java
+    MAIN_DEPENDENCY ${_srcDir}/Result.java
+    DEPENDS ${_pkgDir}/JNIparasail.class
+)
 
 # generate JNIparasail.h stub
-SET (_stubDir "${CMAKE_CURRENT_BINARY_DIR}")
 ADD_CUSTOM_COMMAND(
-    OUTPUT JNIparasail.h
+    OUTPUT parasail_JNIparasail.h
     COMMAND ${Java_JAVAH_EXECUTABLE} -verbose
-        -classpath ${_classDir}
-        -d ${_stubDir}
-        -jni JNIparasail
-    DEPENDS parasail.jar
-    )
+        -classpath ${CMAKE_CURRENT_BINARY_DIR}
+        -jni parasail.JNIparasail
+    MAIN_DEPENDENCY parasail/JNIparasail.class
+)
+
+ADD_CUSTOM_TARGET(
+    parasail.jar
+    ALL
+    ${Java_JAR_EXECUTABLE} -cf parasail.jar ${_pkgDir}
+    DEPENDS ${_pkgDir}/JNIparasail.class
+        ${_pkgDir}/Matrix.class
+        ${_pkgDir}/Result.class
+)
 
 # generate parasail JNI module
 INCLUDE_DIRECTORIES(
     ${JAVA_INCLUDE_PATH}
     ${JAVA_INCLUDE_PATH2}
-    ${_classDir}
-    ${_stubDir}
+    ${_binDir}
     ${PARASAIL_INCLUDE_DIRS})
-ADD_LIBRARY(JNIparasail MODULE JNIparasail.c JNIparasail.h)
+ADD_LIBRARY(JNIparasail MODULE src/parasail/JNIparasail.c parasail_JNIparasail.h)
 TARGET_LINK_LIBRARIES(JNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
 ## The library name expected by the JNI relative to the system:
 ##   MacOS  : libLIBRARY.jnilib
