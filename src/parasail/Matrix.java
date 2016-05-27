@@ -1,8 +1,22 @@
 package parasail;
 
-import parasail.JNIparasail;
+import java.lang.String;
+import java.util.Arrays;
 
 public class Matrix {
+
+    public static void main(String[] args) {
+        System.out.println("matrix_name(Matrix.getCPtr(Matrix.blosum100))");
+        System.out.println(JNIparasail.matrix_name(Matrix.getCPtr(Matrix.blosum100)));
+        System.out.println(JNIparasail.matrix_size(Matrix.getCPtr(Matrix.blosum100)));
+        System.out.println(JNIparasail.matrix_max(Matrix.getCPtr(Matrix.blosum100)));
+        System.out.println(JNIparasail.matrix_min(Matrix.getCPtr(Matrix.blosum100)));
+        System.out.println(Arrays.toString(JNIparasail.matrix_data(Matrix.getCPtr(Matrix.blosum62))));
+        Matrix made = Matrix.create("asdf", 2, -1);
+        System.out.println(Arrays.toString(JNIparasail.matrix_data(Matrix.getCPtr(made))));
+        made.finalize();
+    }
+
     private long CPtr;
     protected boolean CMemOwn;
 
@@ -22,6 +36,9 @@ public class Matrix {
     public synchronized void delete() {
         if(CPtr != 0 && CMemOwn) {
             CMemOwn = false;
+            if (JNIparasail.matrix_need_free(CPtr)) {
+                JNIparasail.matrix_free(CPtr);
+            }
         }
         CPtr = 0;
     }
@@ -40,6 +57,10 @@ public class Matrix {
 
     public int getMin() {
         return JNIparasail.matrix_min(CPtr);
+    }
+
+    public static Matrix create(String alphabet, int match, int mismatch) {
+        return new Matrix(JNIparasail.matrix_create(alphabet, match, mismatch), true);
     }
 
     public static final Matrix blosum100= new Matrix(JNIparasail.matrix_lookup("blosum100"), false);

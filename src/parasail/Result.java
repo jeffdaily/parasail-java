@@ -1,7 +1,5 @@
 package parasail;
 
-import parasail.JNIparasail;
-
 public class Result {
     private long CPtr;
     protected boolean CMemOwn;

@@ -101,6 +101,20 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_matrix_1min
     return result;
 }
 
+JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_matrix_1need_1free
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    jboolean result;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    result = matrix->need_free;
+
+    return result;
+}
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1lookup
   (JNIEnv *env, jclass class, jstring namej)
 {
@@ -118,3 +132,29 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1lookup
     (*env)->ReleaseStringUTFChars(env, namej, nameb);
     return ret;
 }
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1create
+  (JNIEnv *env, jclass class, jstring alphabet, jint match, jint mismatch)
+{
+    const char *c_alphabet = NULL;
+    parasail_matrix_t *matrix;
+
+    c_alphabet = (*env)->GetStringUTFChars(env, alphabet, NULL);
+    matrix = parasail_matrix_create(c_alphabet, match, mismatch);
+    assert(NULL != matrix);
+    (*env)->ReleaseStringUTFChars(env, alphabet, c_alphabet);
+
+    return (jlong)matrix;
+}
+
+JNIEXPORT void JNICALL Java_parasail_JNIparasail_matrix_1free
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    parasail_matrix_free(matrix);
+}
+
