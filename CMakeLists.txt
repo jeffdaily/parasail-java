@@ -2,8 +2,6 @@ PROJECT( parasail-java )
 
 CMAKE_MINIMUM_REQUIRED( VERSION 3.1 )
 
-SET( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH} )
-
 FIND_PACKAGE(Java COMPONENTS Development REQUIRED)
 FIND_PACKAGE(JNI REQUIRED)
 INCLUDE(UseJava)
@@ -25,54 +23,29 @@ ELSE()
     MESSAGE (SEND_ERROR "parasail library not found")
 ENDIF()
 
-SET (_binDir "${CMAKE_CURRENT_BINARY_DIR}")
-SET (_pkgDir "${CMAKE_CURRENT_BINARY_DIR}/parasail")
-SET (_srcDir "${CMAKE_CURRENT_SOURCE_DIR}/src/parasail")
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${_pkgDir}/JNIparasail.class
-    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/JNIparasail.java
-    MAIN_DEPENDENCY ${_srcDir}/JNIparasail.java
-)
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${_pkgDir}/Matrix.class
-    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/Matrix.java
-    MAIN_DEPENDENCY ${_srcDir}/Matrix.java
-    DEPENDS ${_pkgDir}/JNIparasail.class
-)
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${_pkgDir}/Result.class
-    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${_binDir} ${_srcDir}/Result.java
-    MAIN_DEPENDENCY ${_srcDir}/Result.java
-    DEPENDS ${_pkgDir}/JNIparasail.class
-)
-
 # generate JNIparasail.h stub
 ADD_CUSTOM_COMMAND(
     OUTPUT parasail_JNIparasail.h
     COMMAND ${Java_JAVAH_EXECUTABLE} -verbose
-        -classpath ${CMAKE_CURRENT_BINARY_DIR}
+        -classpath parasail.jar
         -jni parasail.JNIparasail
-    MAIN_DEPENDENCY parasail/JNIparasail.class
+    MAIN_DEPENDENCY parasail.jar
 )
 
-ADD_CUSTOM_TARGET(
-    parasail.jar
-    ALL
-    ${Java_JAR_EXECUTABLE} -cf parasail.jar ${_pkgDir}
-    DEPENDS ${_pkgDir}/JNIparasail.class
-        ${_pkgDir}/Matrix.class
-        ${_pkgDir}/Result.class
+ADD_JAR(
+    parasail
+    src/parasail/JNIparasail.java
+    src/parasail/Matrix.java
+    src/parasail/Result.java
 )
 
 # generate parasail JNI module
 INCLUDE_DIRECTORIES(
     ${JAVA_INCLUDE_PATH}
     ${JAVA_INCLUDE_PATH2}
-    ${_binDir}
-    ${PARASAIL_INCLUDE_DIRS})
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${PARASAIL_INCLUDE_DIRS}
+)
 ADD_LIBRARY(JNIparasail MODULE src/parasail/JNIparasail.c parasail_JNIparasail.h)
 TARGET_LINK_LIBRARIES(JNIparasail ${JNI_LIBRARIES} ${PARASAIL_LIBRARIES})
 ## The library name expected by the JNI relative to the system:
