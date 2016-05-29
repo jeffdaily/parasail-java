@@ -3,6 +3,7 @@
 
 #include "parasail_JNIparasail.h"
 #include "parasail.h"
+#include "parasail/cpuid.h"
 #include "parasail/matrices/blosum62.h"
 
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw
@@ -118,17 +119,14 @@ JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_matrix_1need_1free
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1lookup
   (JNIEnv *env, jclass class, jstring namej)
 {
-    //jbyte *nameb = NULL;
     const char *nameb = NULL;
     jlong ret;
 
-    //nameb = (*env)->GetByteArrayElements(env, namej, NULL);
     nameb = (*env)->GetStringUTFChars(env, namej, NULL);
     printf("Java_parasail_JNIparasail_matrix_1lookup '%s'\n", (const char*)nameb);
     ret = (jlong)parasail_matrix_lookup((const char*)nameb);
     assert(0 != ret);
 
-    //(*env)->ReleaseByteArrayElements(env, namej, nameb, JNI_ABORT);
     (*env)->ReleaseStringUTFChars(env, namej, nameb);
     return ret;
 }
@@ -156,5 +154,348 @@ JNIEXPORT void JNICALL Java_parasail_JNIparasail_matrix_1free
 
     matrix = (parasail_matrix_t*)cptr;
     parasail_matrix_free(matrix);
+}
+
+JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_result_1saturated
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->saturated;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1score
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->score;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1matches
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->matches;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1similar
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->similar;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1length
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->length;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1query
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->end_query;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1ref
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    return result->end_ref;
+}
+
+JNIEXPORT void JNICALL Java_parasail_JNIparasail_result_1free
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_result_t *result = NULL;
+
+    assert(0 != cptr);
+
+    result = (parasail_result_t*)cptr;
+    parasail_result_free(result);
+}
+
+JNIEXPORT jstring JNICALL Java_parasail_JNIparasail_profile_1s1
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_profile_t *profile = NULL;
+    jstring result;
+
+    assert(0 != cptr);
+
+    profile = (parasail_profile_t*)cptr;
+    result = (*env)->NewStringUTF(env,profile->s1);
+
+    return result;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_profile_1s1Len
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_profile_t *profile = NULL;
+
+    assert(0 != cptr);
+
+    profile = (parasail_profile_t*)cptr;
+    return profile->s1Len;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1matrix
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_profile_t *profile = NULL;
+
+    assert(0 != cptr);
+
+    profile = (parasail_profile_t*)cptr;
+    return (jlong)profile->matrix;
+}
+
+JNIEXPORT void JNICALL Java_parasail_JNIparasail_profile_1free
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_profile_t *profile = NULL;
+
+    assert(0 != cptr);
+
+    profile = (parasail_profile_t*)cptr;
+    parasail_profile_free(profile);
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_164
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_64(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_132
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_32(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_116
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_16(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_18
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_8(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1sat
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_sat(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1stats_164
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_stats_64(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1stats_132
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_stats_32(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1stats_116
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_stats_16(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1stats_18
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_stats_8(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_profile_1create_1stats_1sat
+  (JNIEnv *env, jclass class, jstring s1, jlong cptr)
+{
+    parasail_matrix_t *matrix = NULL;
+    const char *c_s1 = NULL;
+    jsize length = 0;
+    jlong ret;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    length = (*env)->GetStringLength(env, s1);
+    ret = (jlong)parasail_profile_create_stats_sat(c_s1, length, matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+    return ret;
+}
+
+JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_can_1use_1avx2
+  (JNIEnv *env, jclass class)
+{
+    return parasail_can_use_avx2();
+}
+
+JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_can_1use_1sse41
+  (JNIEnv *env, jclass class)
+{
+    return parasail_can_use_sse41();
+}
+
+JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_can_1use_1sse2
+  (JNIEnv *env, jclass class)
+{
+    return parasail_can_use_sse2();
 }
 
