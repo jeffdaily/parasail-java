@@ -39,6 +39,7 @@ ADD_JAR(
     src/parasail/Result.java
     src/parasail/Profile.java
     src/parasail/Aligner.java
+    src/parasail/Example.java
 )
 
 # generate parasail JNI module
@@ -70,5 +71,4 @@ ENABLE_TESTING()
 # add test to run JNIparasail
 ADD_TEST(NAME TestJNIparasail
     COMMAND ${Java_JAVA_EXECUTABLE}
-    -Djava.library.path=${CMAKE_CURRENT_BINARY_DIR}
-    -cp ${_jarFile} JNIparasail)
+    -cp parasail.jar parasail.JNIparasail)
