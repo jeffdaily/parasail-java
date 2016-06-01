@@ -22,9 +22,12 @@ TODO.
 Example:
 
 ```java
-import parasail;
-parasail.Result result = parasail.sw_scan_16("asdf".getBytes(), "asdf".getBytes(), -11, -1, parasail.blosum62)
-result = parasail.sw_stats_striped_8("asdf".getBytes(), "asdf".getBytes(), -11, -1, parasail.pam100)
+import parasail.Aligner;
+import parasail.Matrix;
+import parasail.Result;
+
+Result result = Aligner.sw_scan_16("asdf", "asdf", -11, -1, Matrix.blosum62);
+System.out.println("score = " + result.getScore());
 ```
 
 ## Citing parasail
