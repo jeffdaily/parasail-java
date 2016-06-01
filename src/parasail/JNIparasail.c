@@ -101,7 +101,6 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1lookup
     jlong ret;
 
     nameb = (*env)->GetStringUTFChars(env, namej, NULL);
-    printf("Java_parasail_JNIparasail_matrix_1lookup '%s'\n", (const char*)nameb);
     ret = (jlong)parasail_matrix_lookup((const char*)nameb);
     assert(0 != ret);
 
@@ -481,7 +480,6 @@ JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_can_1use_1sse2
 /* python ../util/genjavaimpl.py */
 
 
-
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
@@ -512,7 +510,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -542,7 +540,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -572,7 +570,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -602,7 +600,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -632,7 +630,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -662,7 +660,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -692,7 +690,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -722,7 +720,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -752,7 +750,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -782,7 +780,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -812,7 +810,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -872,7 +870,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -902,7 +900,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -932,7 +930,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -962,7 +960,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -992,7 +990,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1022,7 +1020,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1052,7 +1050,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1082,7 +1080,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1112,7 +1110,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1142,7 +1140,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1172,7 +1170,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1232,7 +1230,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1262,7 +1260,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1292,7 +1290,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1322,7 +1320,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1352,7 +1350,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1382,7 +1380,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1412,7 +1410,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1442,7 +1440,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1472,7 +1470,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1502,7 +1500,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1532,7 +1530,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1562,7 +1560,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1592,7 +1590,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1622,7 +1620,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1652,7 +1650,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1682,7 +1680,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1712,7 +1710,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1742,7 +1740,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1772,7 +1770,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1802,7 +1800,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1832,7 +1830,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1862,7 +1860,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1892,7 +1890,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1922,7 +1920,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1952,7 +1950,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -1982,7 +1980,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2012,7 +2010,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2042,7 +2040,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2072,7 +2070,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2102,7 +2100,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2132,7 +2130,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2162,7 +2160,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2192,7 +2190,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2222,7 +2220,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2252,7 +2250,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2282,7 +2280,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2312,7 +2310,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2342,7 +2340,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2372,7 +2370,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2402,7 +2400,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2432,7 +2430,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2462,7 +2460,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2492,7 +2490,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2522,7 +2520,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2552,7 +2550,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2582,7 +2580,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2612,7 +2610,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2642,7 +2640,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2672,7 +2670,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2702,7 +2700,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2732,7 +2730,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2762,7 +2760,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2792,7 +2790,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2822,7 +2820,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2852,7 +2850,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2882,7 +2880,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2912,7 +2910,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2942,7 +2940,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -2972,7 +2970,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3002,7 +3000,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3032,7 +3030,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3062,7 +3060,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3092,7 +3090,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3122,7 +3120,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3152,7 +3150,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3182,7 +3180,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3212,7 +3210,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3242,7 +3240,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3272,7 +3270,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3302,7 +3300,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3332,7 +3330,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3362,7 +3360,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3392,7 +3390,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3422,7 +3420,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3452,7 +3450,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3482,7 +3480,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3512,7 +3510,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3542,7 +3540,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3572,7 +3570,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3602,7 +3600,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3632,7 +3630,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3662,7 +3660,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3692,7 +3690,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3722,7 +3720,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3752,7 +3750,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3782,7 +3780,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3812,7 +3810,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3842,7 +3840,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3872,7 +3870,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3902,7 +3900,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3932,7 +3930,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3962,7 +3960,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -3992,7 +3990,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4022,7 +4020,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4052,7 +4050,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4082,7 +4080,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4112,7 +4110,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4142,7 +4140,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4172,7 +4170,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4202,7 +4200,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4232,7 +4230,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4262,7 +4260,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4292,7 +4290,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4322,7 +4320,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4352,7 +4350,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4382,7 +4380,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4412,7 +4410,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4442,7 +4440,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4472,7 +4470,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4502,7 +4500,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4532,7 +4530,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4562,7 +4560,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4592,7 +4590,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4622,7 +4620,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4652,7 +4650,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4682,7 +4680,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4712,7 +4710,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4742,7 +4740,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4772,7 +4770,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4802,7 +4800,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4832,7 +4830,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4862,7 +4860,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4892,7 +4890,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4922,7 +4920,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4952,7 +4950,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -4982,7 +4980,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5012,7 +5010,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5042,7 +5040,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5072,7 +5070,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5102,7 +5100,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5132,7 +5130,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5162,7 +5160,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5192,7 +5190,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5222,7 +5220,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5252,7 +5250,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5282,7 +5280,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5312,7 +5310,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5342,7 +5340,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5372,7 +5370,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5402,7 +5400,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5432,7 +5430,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5462,7 +5460,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5492,7 +5490,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5522,7 +5520,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5552,7 +5550,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5582,7 +5580,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5612,7 +5610,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5642,7 +5640,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5672,7 +5670,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5702,7 +5700,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5732,7 +5730,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5762,7 +5760,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5792,7 +5790,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5822,7 +5820,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5852,7 +5850,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5882,7 +5880,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5912,7 +5910,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5942,7 +5940,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -5972,7 +5970,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6002,7 +6000,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6032,7 +6030,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6062,7 +6060,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6092,7 +6090,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6122,7 +6120,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6152,7 +6150,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6182,7 +6180,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6212,7 +6210,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6242,7 +6240,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6272,7 +6270,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6302,7 +6300,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6332,7 +6330,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6362,7 +6360,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6392,7 +6390,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6422,7 +6420,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6452,7 +6450,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6482,7 +6480,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6512,7 +6510,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6542,7 +6540,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6572,7 +6570,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6602,7 +6600,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6632,7 +6630,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6662,7 +6660,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6692,7 +6690,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6722,7 +6720,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6752,7 +6750,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6782,7 +6780,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6812,7 +6810,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6842,7 +6840,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6872,7 +6870,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6902,7 +6900,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6932,7 +6930,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6962,7 +6960,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -6992,7 +6990,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7022,7 +7020,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7052,7 +7050,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7082,7 +7080,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7112,7 +7110,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7142,7 +7140,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7172,7 +7170,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7202,7 +7200,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7232,7 +7230,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7262,7 +7260,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7292,7 +7290,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7322,7 +7320,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7352,7 +7350,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7382,7 +7380,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7412,7 +7410,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7442,7 +7440,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7472,7 +7470,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7502,7 +7500,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7532,7 +7530,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7562,7 +7560,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7592,7 +7590,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7622,7 +7620,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7652,7 +7650,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7682,7 +7680,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7712,7 +7710,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7742,7 +7740,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7772,7 +7770,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7802,7 +7800,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7832,7 +7830,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7862,7 +7860,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7892,7 +7890,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7922,7 +7920,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7952,7 +7950,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -7982,7 +7980,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8012,7 +8010,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8042,7 +8040,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8072,7 +8070,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8102,7 +8100,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8132,7 +8130,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8162,7 +8160,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8192,7 +8190,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8222,7 +8220,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8252,7 +8250,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8282,7 +8280,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8312,7 +8310,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8342,7 +8340,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8372,7 +8370,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8402,7 +8400,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8432,7 +8430,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8462,7 +8460,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8492,7 +8490,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8522,7 +8520,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8552,7 +8550,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8582,7 +8580,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8612,7 +8610,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8642,7 +8640,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8672,7 +8670,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8702,7 +8700,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8732,7 +8730,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8762,7 +8760,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8792,7 +8790,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8822,7 +8820,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8852,7 +8850,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8882,7 +8880,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8912,7 +8910,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8942,7 +8940,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -8972,7 +8970,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9002,7 +9000,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9032,7 +9030,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9062,7 +9060,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9092,7 +9090,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9122,7 +9120,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9152,7 +9150,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9182,7 +9180,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9212,7 +9210,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9242,7 +9240,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9272,7 +9270,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9302,7 +9300,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9332,7 +9330,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9362,7 +9360,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9392,7 +9390,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9422,7 +9420,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9452,7 +9450,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9482,7 +9480,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9512,7 +9510,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1diag_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9542,7 +9540,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1diag_132
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9572,7 +9570,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1diag_116
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9602,7 +9600,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1diag_18
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9632,7 +9630,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1diag_1sat
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
     const char *c_s1 = NULL;
@@ -9662,7 +9660,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_diag_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9686,7 +9684,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9710,7 +9708,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9734,7 +9732,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9758,7 +9756,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9782,7 +9780,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9806,7 +9804,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9830,7 +9828,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9854,7 +9852,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9878,7 +9876,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9902,7 +9900,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9926,7 +9924,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9950,7 +9948,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9974,7 +9972,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -9998,7 +9996,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10022,7 +10020,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10046,7 +10044,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10070,7 +10068,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10094,7 +10092,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10118,7 +10116,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10142,7 +10140,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_table_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10166,7 +10164,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10190,7 +10188,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10214,7 +10212,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10238,7 +10236,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10262,7 +10260,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10286,7 +10284,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10310,7 +10308,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10334,7 +10332,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10358,7 +10356,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10382,7 +10380,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_rowcol_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10406,7 +10404,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10430,7 +10428,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10454,7 +10452,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10478,7 +10476,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10502,7 +10500,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10526,7 +10524,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10550,7 +10548,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10574,7 +10572,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10598,7 +10596,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10622,7 +10620,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10646,7 +10644,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10670,7 +10668,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10694,7 +10692,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10718,7 +10716,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10742,7 +10740,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_scan_profile_sa
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10766,7 +10764,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10790,7 +10788,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10814,7 +10812,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10838,7 +10836,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10862,7 +10860,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10886,7 +10884,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_6
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10910,7 +10908,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_3
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10934,7 +10932,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_1
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10958,7 +10956,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -10982,7 +10980,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_scan_profile_s
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11006,7 +11004,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11030,7 +11028,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11054,7 +11052,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11078,7 +11076,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11102,7 +11100,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11126,7 +11124,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11150,7 +11148,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11174,7 +11172,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11198,7 +11196,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11222,7 +11220,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11246,7 +11244,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11270,7 +11268,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11294,7 +11292,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11318,7 +11316,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11342,7 +11340,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11366,7 +11364,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11390,7 +11388,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11414,7 +11412,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11438,7 +11436,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11462,7 +11460,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11486,7 +11484,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11510,7 +11508,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11534,7 +11532,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11558,7 +11556,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11582,7 +11580,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_table_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11606,7 +11604,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11630,7 +11628,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11654,7 +11652,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11678,7 +11676,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11702,7 +11700,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11726,7 +11724,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11750,7 +11748,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11774,7 +11772,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11798,7 +11796,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11822,7 +11820,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_rowcol_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11846,7 +11844,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11870,7 +11868,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11894,7 +11892,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11918,7 +11916,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11942,7 +11940,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11966,7 +11964,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -11990,7 +11988,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12014,7 +12012,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12038,7 +12036,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12062,7 +12060,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12086,7 +12084,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12110,7 +12108,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12134,7 +12132,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12158,7 +12156,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12182,7 +12180,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_scan_profile_sa
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12206,7 +12204,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12230,7 +12228,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12254,7 +12252,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12278,7 +12276,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12302,7 +12300,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12326,7 +12324,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_6
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12350,7 +12348,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_3
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12374,7 +12372,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_1
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12398,7 +12396,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12422,7 +12420,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_scan_profile_s
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12446,7 +12444,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12470,7 +12468,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12494,7 +12492,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12518,7 +12516,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12542,7 +12540,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12566,7 +12564,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12590,7 +12588,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12614,7 +12612,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12638,7 +12636,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12662,7 +12660,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12686,7 +12684,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12710,7 +12708,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12734,7 +12732,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12758,7 +12756,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12782,7 +12780,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12806,7 +12804,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12830,7 +12828,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12854,7 +12852,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12878,7 +12876,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12902,7 +12900,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12926,7 +12924,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12950,7 +12948,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12974,7 +12972,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -12998,7 +12996,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13022,7 +13020,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_table_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13046,7 +13044,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13070,7 +13068,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13094,7 +13092,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13118,7 +13116,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13142,7 +13140,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13166,7 +13164,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13190,7 +13188,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13214,7 +13212,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13238,7 +13236,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13262,7 +13260,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_rowcol_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13286,7 +13284,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13310,7 +13308,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13334,7 +13332,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13358,7 +13356,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13382,7 +13380,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_scan_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13406,7 +13404,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13430,7 +13428,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13454,7 +13452,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13478,7 +13476,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13502,7 +13500,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_striped_profile_sat
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13526,7 +13524,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_64
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13550,7 +13548,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_32
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13574,7 +13572,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_16
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13598,7 +13596,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13622,7 +13620,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_scan_profile_sa
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13646,7 +13644,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13670,7 +13668,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13694,7 +13692,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13718,7 +13716,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1table_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13742,7 +13740,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_table_striped_profile
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13766,7 +13764,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_6
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13790,7 +13788,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_3
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13814,7 +13812,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_1
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13838,7 +13836,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_8
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1scan_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13862,7 +13860,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_scan_profile_s
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profile_64
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13886,7 +13884,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profile_32
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1profile_132
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13910,7 +13908,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profile_16
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1profile_116
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13934,7 +13932,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profile_8
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1profile_18
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;
@@ -13958,7 +13956,7 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profil
 }
 
 
-JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_stats_rowcol_striped_profile_sat
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1rowcol_1striped_1profile_1sat
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
     const char *c_s2 = NULL;

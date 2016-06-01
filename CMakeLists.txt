@@ -37,6 +37,8 @@ ADD_JAR(
     src/parasail/JNIparasail.java
     src/parasail/Matrix.java
     src/parasail/Result.java
+    src/parasail/Profile.java
+    src/parasail/Aligner.java
 )
 
 # generate parasail JNI module
