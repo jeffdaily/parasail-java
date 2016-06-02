@@ -29,6 +29,8 @@ That should produce the parasail.jar as well as the JNIparasail library, named a
 
 ## Code Example
 
+[back to top]
+
 ```java
 import parasail.Aligner;
 import parasail.Matrix;
