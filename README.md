@@ -14,12 +14,19 @@ This package contains Java JNI bindings for [parasail](https://github.com/jeffda
 
 [back to top]
 
-Once you have installed parasail into --prefix=$PREFIX, you can also
-compile the Java JNI bindings.  Don't forget to add $PREFIX/lib to your LD_LIBRARY_PATH, if needed.
+Once you have installed parasail, you can then compile the Java JNI bindings.  The build uses cmake.  The easiest way for cmake to locate the parasail installation is to use the CMAKE_PREFIX_PATH variable.  See the following example for details.
 
-TODO.
+```bash
+cd parasail-java
+mkdir build
+cd build
+cmake .. -DCMAKE_PREFIX_PATH=/your/path/to/parasail/install/prefix
+make
+```
 
-Example:
+That should produce the parasail.jar as well as the JNIparasail library, named according to your platform.  For example, libJNIparasail.jnilib on OSX, JNIparasail.dll on Windows, and libJNIparasail.so on Linux.
+
+## Code Example
 
 ```java
 import parasail.Aligner;
@@ -29,6 +36,8 @@ import parasail.Result;
 Result result = Aligner.sw_scan_16("asdf", "asdf", -11, -1, Matrix.blosum62);
 System.out.println("score = " + result.getScore());
 ```
+
+There is a slightly more complicated code example that is compiled as part of the parasail.jar.  See [Example.java](src/parasail/Example.java).
 
 ## Citing parasail
 
