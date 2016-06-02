@@ -102,4 +102,4 @@ Copyright (c) 2015, Battelle Memorial Institute
     OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
     SUCH DAMAGE.
 
-[back to top]: #parasail-pairwise-sequence-alignment-library
+[back to top]: #parasail-java-java-jni-interface-for-the-parasail-c-library
