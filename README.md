@@ -5,6 +5,7 @@ Author: Jeff Daily (jeff.daily@pnnl.gov)
 ## Table of Contents
 
   * [Installation](#installation)
+  * [Code Example](#code-example)
   * [Citing parasail](#citing-parasail)
   * [License: Battelle BSD\-style](#license-battelle-bsd-style)
 
@@ -14,7 +15,7 @@ This package contains Java JNI bindings for [parasail](https://github.com/jeffda
 
 [back to top]
 
-Once you have installed parasail, you can then compile the Java JNI bindings.  The build uses cmake.  The easiest way for cmake to locate the parasail installation is to use the CMAKE_PREFIX_PATH variable.  See the following example for details.
+Once you have installed [parasail](https://github.com/jeffdaily/parasail), you can then compile the Java JNI bindings.  The build uses cmake.  The easiest way for cmake to locate the parasail installation is to use the CMAKE_PREFIX_PATH variable.  See the following example for details.
 
 ```bash
 cd parasail-java
