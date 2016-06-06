@@ -36,9 +36,14 @@ import parasail.Aligner;
 import parasail.Matrix;
 import parasail.Result;
 
-Result result = Aligner.sw_scan_16("asdf", "asdf", -11, -1, Matrix.blosum62);
+Result result = Aligner.sw_scan_16("asdf", "asdf", 11, 1, Matrix.blosum62);
 System.out.println("score = " + result.getScore());
+result.finalize();
 ```
+
+Please refer to the [parasail C library README.md](https://github.com/jeffdaily/parasail/blob/master/README.md#standard-function-naming-convention) for the naming conventions of the various functions provided.  These Java bindings drop the "parasail_" prefix since the functions are naturally namespaced within the parasail.Aligner class.
+
+Result objects should be manually finalized when no longer used in order to free allocated memory by the parasail C library.  As with the parasail C library, gap open and gap extension penalties are specified as positive numbers.
 
 There is a slightly more complicated code example that is compiled as part of the parasail.jar.  See [Example.java](src/parasail/Example.java).
 
