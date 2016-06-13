@@ -31,7 +31,7 @@ class Example {
         public void run() {
             result = Aligner.sw(s1.getData(), s2.getData(), Example.open, Example.gap, Example.matrix);
             System.out.println(toString() + " = " + result.getScore());
-            result.finalize();
+            result.delete();
 
         }
 
