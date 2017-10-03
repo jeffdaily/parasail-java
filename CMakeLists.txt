@@ -35,6 +35,7 @@ ADD_CUSTOM_COMMAND(
 ADD_JAR(
     parasail
     src/parasail/JNIparasail.java
+    src/parasail/Cigar.java
     src/parasail/Matrix.java
     src/parasail/Result.java
     src/parasail/Profile.java

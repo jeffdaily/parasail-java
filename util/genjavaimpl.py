@@ -9,11 +9,12 @@ def _(name):
 # serial reference implementations (3x2x3 = 18 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 scan = ["", "_scan"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             for d in scan:
                 print """
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_{0}{1}{2}{3}
@@ -49,12 +50,13 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_{0}{1}{2}{3}
 # dispatching implementations (3x2x3x3x4 = 216 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 par = ["_scan", "_striped", "_diag"]
 width = ["_64", "_32", "_16", "_8", "_sat"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             for p in par:
                 for w in width:
                     print """
@@ -92,12 +94,13 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_{0}{1}{2}{3}{4}
 # dispatching profile implementations (3x2x3x2x4 = 144 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 par = ["_scan_profile", "_striped_profile"]
 width = ["_64", "_32", "_16", "_8", "_sat"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             for p in par:
                 for w in width:
                     print """

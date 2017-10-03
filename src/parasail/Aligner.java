@@ -28,6 +28,14 @@ public class Aligner {
         return new Result(JNIparasail.nw_rowcol_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
+    public static Result nw_trace(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
     public static Result nw_stats(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.nw_stats(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
@@ -76,6 +84,14 @@ public class Aligner {
         return new Result(JNIparasail.sg_rowcol_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
+    public static Result sg_trace(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_scan(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
     public static Result sg_stats(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.sg_stats(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
@@ -122,6 +138,14 @@ public class Aligner {
 
     public static Result sw_rowcol_scan(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.sw_rowcol_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_scan(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
     public static Result sw_stats(String s1, String s2, int open, int gap, Matrix matrix) {
@@ -326,6 +350,66 @@ public class Aligner {
 
     public static Result nw_rowcol_diag_sat(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.nw_rowcol_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_scan_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_scan_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_striped_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_striped_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_striped_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_striped_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_striped_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_striped_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_striped_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_striped_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_striped_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_striped_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_diag_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_diag_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_diag_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_diag_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_diag_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_diag_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_diag_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_diag_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result nw_trace_diag_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.nw_trace_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
     public static Result nw_stats_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
@@ -688,6 +772,66 @@ public class Aligner {
         return new Result(JNIparasail.sg_rowcol_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
+    public static Result sg_trace_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_scan_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_scan_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_scan_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_scan_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_scan_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_striped_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_striped_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_striped_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_striped_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_striped_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_striped_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_striped_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_striped_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_striped_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_striped_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_diag_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_diag_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_diag_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_diag_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_diag_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_diag_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_diag_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_diag_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sg_trace_diag_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sg_trace_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
     public static Result sg_stats_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.sg_stats_scan_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
@@ -1048,6 +1192,66 @@ public class Aligner {
         return new Result(JNIparasail.sw_rowcol_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
 
+    public static Result sw_trace_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_scan_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_scan_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_scan_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_scan_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_scan_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_striped_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_striped_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_striped_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_striped_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_striped_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_striped_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_striped_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_striped_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_striped_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_striped_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_diag_64(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_diag_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_diag_32(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_diag_32(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_diag_16(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_diag_16(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_diag_8(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_diag_8(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
+    public static Result sw_trace_diag_sat(String s1, String s2, int open, int gap, Matrix matrix) {
+        return new Result(JNIparasail.sw_trace_diag_sat(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
+    }
+
     public static Result sw_stats_scan_64(String s1, String s2, int open, int gap, Matrix matrix) {
         return new Result(JNIparasail.sw_stats_scan_64(s1, s2, open, gap, Matrix.getCPtr(matrix)), true);
     }
@@ -1348,6 +1552,46 @@ public class Aligner {
         return new Result(JNIparasail.nw_rowcol_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
     }
 
+    public static Result nw_trace_scan_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_scan_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_scan_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_scan_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_scan_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_scan_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_scan_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_scan_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_scan_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_scan_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_striped_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_striped_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_striped_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_striped_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_striped_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_striped_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_striped_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_striped_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result nw_trace_striped_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.nw_trace_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
     public static Result nw_stats_scan_profile_64(Profile profile, String s2, int open, int gap) {
         return new Result(JNIparasail.nw_stats_scan_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
     }
@@ -1588,6 +1832,46 @@ public class Aligner {
         return new Result(JNIparasail.sg_rowcol_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
     }
 
+    public static Result sg_trace_scan_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_scan_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_scan_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_scan_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_scan_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_scan_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_scan_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_scan_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_scan_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_scan_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_striped_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_striped_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_striped_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_striped_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_striped_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_striped_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_striped_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_striped_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sg_trace_striped_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sg_trace_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
     public static Result sg_stats_scan_profile_64(Profile profile, String s2, int open, int gap) {
         return new Result(JNIparasail.sg_stats_scan_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
     }
@@ -1826,6 +2110,46 @@ public class Aligner {
 
     public static Result sw_rowcol_striped_profile_sat(Profile profile, String s2, int open, int gap) {
         return new Result(JNIparasail.sw_rowcol_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_scan_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_scan_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_scan_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_scan_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_scan_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_scan_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_scan_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_scan_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_scan_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_scan_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_striped_profile_64(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_striped_profile_64(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_striped_profile_32(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_striped_profile_32(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_striped_profile_16(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_striped_profile_16(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_striped_profile_8(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_striped_profile_8(Profile.getCPtr(profile), s2, open, gap), true);
+    }
+
+    public static Result sw_trace_striped_profile_sat(Profile profile, String s2, int open, int gap) {
+        return new Result(JNIparasail.sw_trace_striped_profile_sat(Profile.getCPtr(profile), s2, open, gap), true);
     }
 
     public static Result sw_stats_scan_profile_64(Profile profile, String s2, int open, int gap) {

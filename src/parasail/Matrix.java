@@ -36,7 +36,7 @@ public class Matrix {
     public synchronized void delete() {
         if(CPtr != 0 && CMemOwn) {
             CMemOwn = false;
-            if (JNIparasail.matrix_need_free(CPtr)) {
+            if (0 != JNIparasail.matrix_user_matrix(CPtr)) {
                 JNIparasail.matrix_free(CPtr);
             }
         }
@@ -132,5 +132,7 @@ public class Matrix {
     public static final Matrix pam70    = Matrix.lookup("pam70"    );
     public static final Matrix pam80    = Matrix.lookup("pam80"    );
     public static final Matrix pam90    = Matrix.lookup("pam90"    );
+    public static final Matrix dnafull  = Matrix.lookup("dnafull"  );
+    public static final Matrix nuc44    = Matrix.lookup("nuc44"    );
 }
 

@@ -80,16 +80,16 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_matrix_1min
     return result;
 }
 
-JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_matrix_1need_1free
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1user_1matrix
   (JNIEnv *env, jclass class, jlong cptr)
 {
     parasail_matrix_t *matrix = NULL;
-    jboolean result;
+    jlong result;
 
     assert(0 != cptr);
 
     matrix = (parasail_matrix_t*)cptr;
-    result = matrix->need_free;
+    result = (jlong)matrix->user_matrix;
 
     return result;
 }
@@ -141,7 +141,7 @@ JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_result_1saturated
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->saturated;
+    return parasail_result_is_saturated(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1score
@@ -152,7 +152,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1score
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->score;
+    return parasail_result_get_score(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1matches
@@ -163,7 +163,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1matches
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->matches;
+    return parasail_result_get_matches(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1similar
@@ -174,7 +174,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1similar
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->similar;
+    return parasail_result_get_similar(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1length
@@ -185,7 +185,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1length
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->length;
+    return parasail_result_get_length(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1query
@@ -196,7 +196,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1query
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->end_query;
+    return parasail_result_get_end_query(result);
 }
 
 JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1ref
@@ -207,7 +207,7 @@ JNIEXPORT jint JNICALL Java_parasail_JNIparasail_result_1end_1ref
     assert(0 != cptr);
 
     result = (parasail_result_t*)cptr;
-    return result->end_ref;
+    return parasail_result_get_end_ref(result);
 }
 
 JNIEXPORT void JNICALL Java_parasail_JNIparasail_result_1free
@@ -219,6 +219,127 @@ JNIEXPORT void JNICALL Java_parasail_JNIparasail_result_1free
 
     result = (parasail_result_t*)cptr;
     parasail_result_free(result);
+}
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_result_1cigar
+  (JNIEnv *env, jclass class, jlong result, jstring s1, jstring s2, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *c_result = NULL;
+    parasail_cigar_t *c_cigar = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+    c_result = (parasail_result_t*)result;
+    c_cigar = parasail_result_get_cigar(c_result, c_s1, s1Len, c_s2, s2Len, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)c_cigar;
+}
+
+JNIEXPORT void JNICALL Java_parasail_JNIparasail_cigar_1free
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    parasail_cigar_free(cigar);
+}
+
+JNIEXPORT jintArray JNICALL Java_parasail_JNIparasail_cigar_1seq
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+    jintArray result;
+    int size;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    size = cigar->len;
+    result = (*env)->NewIntArray(env, size);
+    assert(NULL != result);
+    (*env)->SetIntArrayRegion(env, result, 0, size, (int*)cigar->seq);
+
+    return result;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_cigar_1len
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    return cigar->len;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_cigar_1beg_1query
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    return cigar->beg_query;
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_cigar_1beg_1ref
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    return cigar->beg_ref;
+}
+
+JNIEXPORT jstring JNICALL Java_parasail_JNIparasail_cigar_1decode
+  (JNIEnv *env, jclass class, jlong cptr)
+{
+    parasail_cigar_t *cigar = NULL;
+    char *decoded = NULL;
+    jstring result;
+
+    assert(0 != cptr);
+
+    cigar = (parasail_cigar_t*)cptr;
+    decoded = parasail_cigar_decode(cigar);
+    result = (*env)->NewStringUTF(env,decoded);
+    free(decoded);
+
+    return result;
+}
+
+JNIEXPORT jchar JNICALL Java_parasail_JNIparasail_cigar_1decode_1op
+  (JNIEnv *env, jclass class, jint cigar_int)
+{
+    return parasail_cigar_decode_op(cigar_int);
+}
+
+JNIEXPORT jint JNICALL Java_parasail_JNIparasail_cigar_1decode_1len
+  (JNIEnv *env, jclass class, jint cigar_int)
+{
+    return parasail_cigar_decode_len(cigar_int);
 }
 
 JNIEXPORT jstring JNICALL Java_parasail_JNIparasail_profile_1s1
@@ -479,7 +600,6 @@ JNIEXPORT jboolean JNICALL Java_parasail_JNIparasail_can_1use_1sse2
 /* autogenerated */
 /* python ../util/genjavaimpl.py */
 
-
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
@@ -652,6 +772,66 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1scan
     c_matrix = (parasail_matrix_t*)matrix;
 
     result = parasail_nw_rowcol_scan(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
 
     (*env)->ReleaseStringUTFChars(env, s2, c_s2);
     (*env)->ReleaseStringUTFChars(env, s1, c_s1);
@@ -1020,6 +1200,66 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1scan
 }
 
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
@@ -1372,6 +1612,66 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1scan
     c_matrix = (parasail_matrix_t*)matrix;
 
     result = parasail_sw_rowcol_scan(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
 
     (*env)->ReleaseStringUTFChars(env, s2, c_s2);
     (*env)->ReleaseStringUTFChars(env, s1, c_s1);
@@ -2902,6 +3202,456 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1diag_1sat
     c_matrix = (parasail_matrix_t*)matrix;
 
     result = parasail_nw_rowcol_diag_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_scan_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_striped_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_striped_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_striped_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_striped_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_striped_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1diag_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_diag_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1diag_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_diag_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1diag_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_diag_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1diag_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_diag_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1diag_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_nw_trace_diag_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
 
     (*env)->ReleaseStringUTFChars(env, s2, c_s2);
     (*env)->ReleaseStringUTFChars(env, s1, c_s1);
@@ -5610,6 +6360,456 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1diag_1sat
 }
 
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_scan_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_striped_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_striped_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_striped_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_striped_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_striped_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1diag_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_diag_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1diag_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_diag_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1diag_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_diag_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1diag_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_diag_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1diag_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sg_trace_diag_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
@@ -8310,6 +9510,456 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1diag_1sat
 }
 
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_scan_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_striped_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_striped_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_striped_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_striped_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_striped_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1diag_164
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_diag_64(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1diag_132
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_diag_32(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1diag_116
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_diag_16(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1diag_18
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_diag_8(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1diag_1sat
+  (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
+{
+    const char *c_s1 = NULL;
+    const char *c_s2 = NULL;
+    parasail_matrix_t *c_matrix = NULL;
+    parasail_result_t *result = NULL;
+    jsize s1Len = 0;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s1, NULL));
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != matrix);
+
+    c_s1 = (*env)->GetStringUTFChars(env, s1, NULL);
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s1Len = (*env)->GetStringLength(env, s1);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_matrix = (parasail_matrix_t*)matrix;
+
+    result = parasail_sw_trace_diag_sat(c_s1, s1Len, c_s2, s2Len, open, gap, c_matrix);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+    (*env)->ReleaseStringUTFChars(env, s1, c_s1);
+
+    return (jlong)result;
+}
+
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1stats_1scan_164
   (JNIEnv *env, jclass class, jstring s1, jstring s2, jint open, jint gap, jlong matrix)
 {
@@ -10380,6 +12030,246 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1rowcol_1striped_1profile_1
 }
 
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_scan_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_scan_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_scan_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_scan_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1scan_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_scan_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_striped_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_striped_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_striped_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_striped_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1trace_1striped_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_nw_trace_striped_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_nw_1stats_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
@@ -11820,6 +13710,246 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1rowcol_1striped_1profile_1
 }
 
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_scan_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_scan_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_scan_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_scan_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1scan_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_scan_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_striped_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_striped_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_striped_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_striped_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1trace_1striped_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sg_trace_striped_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
 JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sg_1stats_1scan_1profile_164
   (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
 {
@@ -13253,6 +15383,246 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1rowcol_1striped_1profile_1
     c_profile = (parasail_profile_t*)profile;
 
     result = parasail_sw_rowcol_striped_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_scan_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_scan_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_scan_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_scan_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1scan_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_scan_profile_sat(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1profile_164
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_striped_profile_64(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1profile_132
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_striped_profile_32(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1profile_116
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_striped_profile_16(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1profile_18
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_striped_profile_8(c_profile, c_s2, s2Len, open, gap);
+
+    (*env)->ReleaseStringUTFChars(env, s2, c_s2);
+
+    return (jlong)result;
+}
+
+
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_sw_1trace_1striped_1profile_1sat
+  (JNIEnv *env, jclass class, jlong profile, jstring s2, jint open, jint gap)
+{
+    const char *c_s2 = NULL;
+    parasail_profile_t *c_profile = NULL;
+    parasail_result_t *result = NULL;
+    jsize s2Len = 0;
+
+    assert(!(*env)->IsSameObject(env, s2, NULL));
+    assert(0 != profile);
+
+    c_s2 = (*env)->GetStringUTFChars(env, s2, NULL);
+    s2Len = (*env)->GetStringLength(env, s2);
+
+    c_profile = (parasail_profile_t*)profile;
+
+    result = parasail_sw_trace_striped_profile_sat(c_profile, c_s2, s2Len, open, gap);
 
     (*env)->ReleaseStringUTFChars(env, s2, c_s2);
 

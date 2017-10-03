@@ -3,32 +3,35 @@
 # serial reference implementations (3x2x3 = 18 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             print ("    public static native long "+a+s+t+'('+
                     "String s1, String s2, int open, int gap, long matrix);")
 
 # serial scan reference implementations (3x2x3 = 18 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             print ("    public static native long "+a+s+t+'_scan('+
                     "String s1, String s2, int open, int gap, long matrix);")
 
 # dispatching implementations (3x2x3x3x4 = 216 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 par = ["_scan", "_striped", "_diag"]
 width = ["_64", "_32", "_16", "_8", "_sat"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             for p in par:
                 for w in width:
                     print ("    public static native long "+a+s+t+p+w+'('
@@ -37,12 +40,13 @@ for a in alg:
 # dispatching profile implementations (3x2x3x2x4 = 144 impl)
 alg = ["nw", "sg", "sw"]
 stats = ["", "_stats"]
-table = ["", "_table", "_rowcol"]
+table = ["", "_table", "_rowcol", "_trace"]
 par = ["_scan_profile", "_striped_profile"]
 width = ["_64", "_32", "_16", "_8", "_sat"]
 for a in alg:
     for s in stats:
         for t in table:
+            if "trace" in t and "stats" in s: continue
             for p in par:
                 for w in width:
                     print ("    public static native long "+a+s+t+p+w+'('
