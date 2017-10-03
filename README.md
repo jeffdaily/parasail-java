@@ -45,7 +45,7 @@ Please refer to the [parasail C library README.md](https://github.com/jeffdaily/
 
 Result objects should be manually deleted when no longer used in order to free allocated memory by the parasail C library.  As with the parasail C library, gap open and gap extension penalties are specified as positive numbers.
 
-There is a slightly more complicated code example that is compiled as part of the parasail.jar.  See [Example.java](src/parasail/Example.java).
+There is a slightly more complicated code example that is compiled as part of the parasail.jar.  See [Example.java](src/parasail/Example.java).  You can run the compiled example from within the build directory by running `java -cp ./parasail.jar parasail.Example <filename.fasta>`.
 
 ## Citing parasail
 

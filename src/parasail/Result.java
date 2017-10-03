@@ -52,5 +52,9 @@ public class Result {
     public int getEndRef() {
         return JNIparasail.result_end_ref(CPtr);
     }
+
+    public Cigar getCigar(String s1, String s2, Matrix matrix) {
+        return new Cigar(JNIparasail.result_cigar(CPtr, s1, s2, Matrix.getCPtr(matrix)), true);
+    }
 }
 
