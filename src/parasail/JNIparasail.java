@@ -21,6 +21,7 @@ public class JNIparasail {
     public static native long matrix_user_matrix(long CPtr);
     public static native long matrix_lookup(String name);
     public static native long matrix_create(String alphabet, int match, int mismatch);
+    public static native long matrix_set_value(long CPtr, int row, int column, int value);
     public static native void matrix_free(long CPtr);
 
     public static native boolean result_saturated(long CPtr);
