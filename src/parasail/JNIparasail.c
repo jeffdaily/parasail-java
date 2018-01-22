@@ -122,6 +122,17 @@ JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1create
     return (jlong)matrix;
 }
 
+JNIEXPORT jlong JNICALL Java_parasail_JNIparasail_matrix_1set_1value
+  (JNIEnv *env, jclass class, jlong cptr, jint row, jint col, jint value)
+{
+    parasail_matrix_t *matrix = NULL;
+
+    assert(0 != cptr);
+
+    matrix = (parasail_matrix_t*)cptr;
+    parasail_matrix_set_value(matrix, row, col, value);
+}
+
 JNIEXPORT void JNICALL Java_parasail_JNIparasail_matrix_1free
   (JNIEnv *env, jclass class, jlong cptr)
 {

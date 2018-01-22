@@ -59,6 +59,14 @@ public class Matrix {
         return JNIparasail.matrix_min(CPtr);
     }
 
+    public int[] getData() {
+        return JNIparasail.matrix_data(CPtr);
+    }
+
+    public void setValue(int row, int column, int value) {
+        JNIparasail.matrix_set_value(CPtr, row, column, value);
+    }
+
     public static Matrix create(String alphabet, int match, int mismatch) {
         return new Matrix(JNIparasail.matrix_create(alphabet, match, mismatch), true);
     }
